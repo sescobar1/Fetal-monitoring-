@@ -25,13 +25,13 @@ const el=id=>document.getElementById(id);
 
 function normalizeSpeech(t){
  return String(t)
- .replace(/Category\\s+III/gi,"Category three")
- .replace(/Category\\s+II/gi,"Category two")
- .replace(/Category\\s+I/gi,"Category one")
+ .replace(/Category\s+III/gi,"Category three")
+ .replace(/Category\s+II/gi,"Category two")
+ .replace(/Category\s+I/gi,"Category one")
  .replace(/FHR/g,"fetal heart rate")
- .replace(/mU\\/min/g,"milliunits per minute")
+ .replace(/mU\/min/g,"milliunits per minute")
  .replace(/cm/g,"centimeters")
- .replace(/G(\\d)P(\\d)/g,"G $1 P $2");
+ .replace(/G(\d)P(\d)/g,"G $1 P $2");
 }
 function loadVoices(){
  const voices=speechSynthesis.getVoices().filter(v=>v.lang&&v.lang.startsWith("en"));

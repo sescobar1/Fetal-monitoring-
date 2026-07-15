@@ -15,6 +15,9 @@
 <div id="loadNotice" style="max-width:900px;margin:12px auto;padding:12px;border-radius:10px;background:#fff8d6;border-left:5px solid #f4c542;">
 Loading Dr. Darnell's Fetal Strip Practice…
 </div>
+<div id="loadError" style="display:none;max-width:900px;margin:12px auto;padding:12px;border-radius:10px;background:#fff0ee;border-left:5px solid #b42318;">
+The game could not load. Confirm that index.html, styles.css, cases.js, and app.js are together in the same extracted folder.
+</div>
 <section id="start" class="card start">
 <h2>Choose Your Practice Experience</h2>
 <input id="studentName" placeholder="Student name for certificate">
@@ -156,6 +159,14 @@ Loading Dr. Darnell's Fetal Strip Practice…
 </section>
 </main>
 
+<script>
+window.setTimeout(function(){
+  var notice=document.getElementById("loadNotice");
+  if(notice && notice.style.display!=="none"){
+    document.getElementById("loadError").style.display="block";
+  }
+},3000);
+</script>
 <script src="cases.js"></script>
 <script src="app.js"></script>
 </body>
