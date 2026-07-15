@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Darnell's Fetal Strip Practice – Professional Edition</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+<h1>Dr. Darnell's Fetal Strip Practice</h1>
+<p>Professional Edition • Interpretation • Clinical Judgment • Intervention Simulation</p>
+</header>
+<main>
+<div id="loadNotice" style="max-width:900px;margin:12px auto;padding:12px;border-radius:10px;background:#fff8d6;border-left:5px solid #f4c542;">
+Loading Dr. Darnell's Fetal Strip Practice…
+</div>
+<section id="start" class="card start">
+<h2>Choose Your Practice Experience</h2>
+<input id="studentName" placeholder="Student name for certificate">
+<br>
+<select id="difficulty">
+<option value="All">Mixed Practice: All Levels</option>
+<option value="Beginner">Beginner</option>
+<option value="Intermediate">Intermediate</option>
+<option value="Advanced">Advanced</option>
+</select>
+<br>
+<select id="caseCount">
+<option value="5">5 Cases</option>
+<option value="10">10 Cases</option>
+<option value="20" selected>20 Cases</option>
+</select>
+<div class="controls">
+<button class="primary" id="startBtn">Start Clinical Practice</button>
+<button class="secondary" id="dashboardBtn">Instructor Dashboard</button>
+</div>
+<p><small>Educational simulation only. Clinical decisions must follow current institutional policy, provider orders, and emergency protocols.</small></p>
+</section>
+
+<section id="dashboard" class="card dashboard hidden">
+<h2>Instructor Dashboard</h2>
+<p>Edit or paste a JSON case bank below. Export the current cases for backup. Changes last only until the page is refreshed unless you replace the case bank in the HTML file.</p>
+<textarea id="caseEditor"></textarea>
+<div class="controls">
+<button class="primary" id="applyCasesBtn">Apply Case Bank</button>
+<button class="secondary" id="exportCasesBtn">Download Case Bank</button>
+<button class="secondary" id="closeDashboardBtn">Close</button>
+</div>
+</section>
+
+<section id="game" class="hidden">
+<div class="stats">
+<div class="stat"><span>Case</span><strong id="caseStat">1/20</strong></div>
+<div class="stat"><span>Points</span><strong id="scoreStat">0</strong></div>
+<div class="stat"><span>Accuracy</span><strong id="accuracyStat">0%</strong></div>
+<div class="stat"><span>Streak</span><strong id="streakStat">0</strong></div>
+<div class="stat"><span>Level</span><strong id="levelStat">—</strong></div>
+</div>
+
+<div class="card">
+<div class="tabs">
+<button class="tab active" data-tab="practice">Clinical Practice</button>
+<button class="tab" data-tab="achievements">Achievements</button>
+</div>
+<div id="practiceTab">
+<div class="grid">
+<div>
+<div class="badge" id="caseBadge">Case 1</div>
+<h2 id="caseTitle"></h2>
+<h3>Virtual Patient</h3>
+<div id="patientGrid" class="patient-grid"></div>
+<div class="controls">
+<button class="secondary" id="readCaseBtn">🔊 Read Patient & Case</button>
+<button class="warn" id="hintBtn">💡 Hint</button>
+</div>
+<div id="hintBox" class="hint"></div>
+</div>
+<div>
+<div class="monitor">
+<canvas id="monitor" width="1000" height="430" aria-label="Scrolling fetal heart rate and uterine activity tracing"></canvas>
+<div class="monitor-controls">
+<span class="status" id="monitorStatus">Live strip running</span>
+<div>
+<button class="secondary" id="pauseBtn">Pause</button>
+<button class="secondary" id="replayBtn">Replay</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="stepper" id="stepper">
+<div class="step active">Baseline</div><div class="step">Variability</div><div class="step">Accelerations</div>
+<div class="step">Decelerations</div><div class="step">Category</div><div class="step">Intervention</div>
+</div>
+
+<div class="question">
+<h3 id="questionText"></h3>
+<div id="options"></div>
+<div id="feedback" class="feedback"></div>
+<div class="controls">
+<button class="secondary hidden" id="nextStepBtn">Next Step</button>
+</div>
+</div>
+
+<div id="interventionPanel" class="hidden">
+<h3>Intervention Simulator</h3>
+<p>Select the action you would take first. The virtual patient and strip will respond to your decision.</p>
+<div class="actions" id="actions"></div>
+<div id="simResult" class="sim-result"></div>
+</div>
+
+<div class="progress"><div id="progressBar"></div></div>
+</div>
+
+<div id="achievementsTab" class="hidden">
+<h2>Achievements</h2>
+<div id="badges" class="badges"></div>
+</div>
+</div>
+</section>
+
+<section id="report" class="card hidden">
+<h2>Performance Report</h2>
+<div class="report-grid">
+<div class="report-card"><span>Overall Score</span><strong id="reportScore"></strong></div>
+<div class="report-card"><span>Accuracy</span><strong id="reportAccuracy"></strong></div>
+<div class="report-card"><span>Performance Level</span><strong id="reportLevel"></strong></div>
+</div>
+<h3>Skill Breakdown</h3>
+<div id="skillReport"></div>
+<h3>Achievements Earned</h3>
+<div id="reportBadges" class="badges"></div>
+<div class="controls">
+<button class="primary" id="certificateBtn">View Certificate</button>
+<button class="secondary" id="restartBtn">Practice Again</button>
+</div>
+</section>
+
+<section id="certificate" class="certificate">
+<div class="seal">ATU<br>NURSING</div>
+<h2>Certificate of Completion</h2>
+<p>This certifies that</p>
+<h3 id="certName"></h3>
+<p>has successfully completed</p>
+<h3>Dr. Darnell's Fetal Strip Practice</h3>
+<p>Professional Edition</p>
+<p id="certCases"></p>
+<h3 id="certScore"></h3>
+<p id="certLevel"></p>
+<p id="certDate"></p>
+<div class="controls no-print">
+<button class="primary" id="printBtn">Print / Save as PDF</button>
+<button class="secondary" id="backReportBtn">Back to Report</button>
+</div>
+</section>
+</main>
+
+<script src="cases.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
